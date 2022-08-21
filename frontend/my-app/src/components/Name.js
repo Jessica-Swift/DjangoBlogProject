@@ -4,20 +4,23 @@ class Name extends Component {
   constructor() {
     super();
     this.state = {
-      name: "Jessica Maria",
+      name: "Jessica",
     };
   }
-  clickedMe() {
+  clickedMe = () => {
     this.setState({
-      name: 'Changed Text'
-    })
-  }
+      // name: "Changed Text",
+      name: this.state.name === "Jessica" ? "Taeeun" : "Jessica",
+    });
+  };
 
   render() {
     return (
       <div>
-        <h1>{this.state.name}</h1>
-        <button onClick = {} className="btn btn-success">Change Text</button>
+        <h1 className="bg-primary text-white text-center">{this.state.name}</h1>
+        <button onClick={this.clickedMe} className="btn btn-success">
+          Change Text
+        </button>
       </div>
     );
   }
