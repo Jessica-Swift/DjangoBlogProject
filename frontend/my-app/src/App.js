@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 // import Hello from "./components/Hello";
 // import FuncComponent from "./components/FuncComponents";
@@ -11,28 +10,12 @@ import "./App.css";
 import ComponentA from "./components/ComponentA";
 
 function App() {
-
   return (
     <div className="container">
-
-      <ComponentA/>
-
+      <ComponentA />
     </div>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // function App() {
 //   function clicked() {
