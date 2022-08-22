@@ -12,12 +12,10 @@ from django.contrib.auth.models import User
 class ArticleViewSet(viewsets.ModelViewSet):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
-    permission_classes = [IsAuthenticated]
-    authentication_classes = TokenAuthentication
+    # permission_classes = [IsAuthenticated] # it should be uncommented
+    authentication_classes = (TokenAuthentication,)
+
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-
-
-
