@@ -10,6 +10,13 @@ import "./App.css";
 import ComponentA from "./components/ComponentA";
 import Counter from "./components/Counter";
 import CounterHook from "./components/CounterHook";
+import FetchData from "./components/FetchData";
+import ComponentC from "./components/ComponentC";
+import React from "react";
+import UseReducer from "./components/UseReducer";
+import DataFetching from "./components/DataFetching";
+
+export const MyContext = React.createContext();
 
 function App() {
   function clicked() {
@@ -22,10 +29,18 @@ function App() {
       <Example names={["Python", "Java", "JavaScript", "C#"]} />
       <Example2 names={["React", "React Native", "Django"]} />
       <Form />  
-      <MyFragment /> */}
+      <MyFragment />
       <ComponentA />
       <Counter />
       <CounterHook />
+      <FetchData />
+      <MyContext.Provider value="This data is with useContext Hook">
+        <ComponentC />
+      </MyContext.Provider> */}
+
+      <UseReducer />
+
+      <DataFetching />
     </div>
   );
 }
