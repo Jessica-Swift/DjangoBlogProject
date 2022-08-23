@@ -54,9 +54,10 @@ function App() {
       {articles.map((article) => {
         <h2>{article.title}</h2>;
       })}
-      <ArticleList articles={articles} />
+      <ArticleList articles={articles} editBtn={editBtn} />
+      {editArticle ? <Form2 article = {editArticle}/ > : null}
 
-      {/* <Name />
+      {/* <Name /> 
       <Example names={["Python", "Java", "JavaScript", "C#"]} />
       <Example2 names={["React", "React Native", "Django"]} />
       <Form />  
