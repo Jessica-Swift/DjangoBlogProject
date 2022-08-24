@@ -1,11 +1,17 @@
 import React from "react";
+import APIService from "../APIService";
 
 function ArticleList(props) {
-
   const editBtn = (article) => {
-    props.editBtn(article)
-  }
-         
+    props.editBtn(article);
+  };
+
+  const deleteBtn = (article) => {
+    APIService.DeleteArticle(article.id)
+      .then(() => props.deleteBtn(article))
+      .catch((error) => console.log(error));
+  };
+
   return (
     <div>
       {props.articles &&
@@ -17,11 +23,21 @@ function ArticleList(props) {
 
               <div className="row">
                 <div className="col-md-1">
-                  <button className="btn btn-primary" onClick={() => editBtn(article)}>Update</button>
+                  <button
+                    className="btn btn-primary"
+                    onClick={() => editBtn(article)}
+                  >
+                    Update
+                  </button>
                 </div>
 
                 <div className="col">
-                  <button className="btn btn-danger">Delete</button>
+                  <button
+                    onClick={() => deleteBtn(article)}
+                    className="btn btn-danger"
+                  >
+                    Delete
+                  </button>
                 </div>
               </div>
 

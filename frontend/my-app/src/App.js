@@ -56,6 +56,21 @@ function App() {
     setEditArticle({ title: "", description: "" });
   };
 
+  const insertedInformation = (article) => {
+    const new_article = [...articles, article];
+    setArticles(new_article);
+  };
+
+  const deleteBtn = (article) => {
+    const new_article = articles.filter((myarticle) => {
+      if (myarticle.id === article.id) {
+        return false;
+      }
+      return true;
+    });
+    setArticles(new_article);
+  };
+
   // function clicked() {
   //   alert("Inside App.js");
   // }
@@ -70,11 +85,16 @@ function App() {
           {articles.map((article) => {
             <h2>{article.title}</h2>;
           })}
-          <ArticleList articles={articles} editBtn={editBtn} />
+          <ArticleList
+            articles={articles}
+            editBtn={editBtn}
+            deleteBtn={deleteBtn}
+          />
           {editArticle ? (
             <Form2
               article={editArticle}
               updatedInformation={updatedInformation}
+              insertedInformation={insertedInformation}
             />
           ) : null}
 

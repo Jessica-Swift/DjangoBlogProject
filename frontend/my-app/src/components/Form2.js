@@ -15,7 +15,7 @@ function Form2(props) {
 
   const insertArticle = () => {
     APIService.insertArticle({ title, description }).then((resp) =>
-      console.log(resp)
+      props.insertedInformation(resp)
     );
   };
 

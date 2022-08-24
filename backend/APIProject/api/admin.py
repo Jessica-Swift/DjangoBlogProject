@@ -11,3 +11,6 @@ from .models import Article
 class ArticleModel(admin.ModelAdmin):
     list_filter = ('title', 'description')
     list_display = ('title', 'description')
+
+    def delete_queryset(self, request, queryset):
+        queryset.delete()
