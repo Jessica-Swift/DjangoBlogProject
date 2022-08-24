@@ -42,22 +42,43 @@ function App() {
     setEditArticle(article);
   };
 
+  const updatedInformation = (article) => {
+    const new_article = articles.map((myarticle) => {
+      if (myarticle.id === article.id) return article;
+      else {
+        return myarticle;
+      }
+    });
+    setArticles(new_article);
+  };
+
+  const articleForm = () => {
+    setEditArticle({ title: "", description: "" });
+  };
+
   // function clicked() {
   //   alert("Inside App.js");
   // }
 
   return (
     <div className="App">
-      <h1>Django and ReactJS Course</h1>
-      <br />
-      <br />
-      {articles.map((article) => {
-        <h2>{article.title}</h2>;
-      })}
-      <ArticleList articles={articles} editBtn={editBtn} />
-      {editArticle ? <Form2 article = {editArticle}/ > : null}
+      <div className="row">
+        <div className="col">
+          <h2>Django and ReactJS Course</h2>
+          <br />
+          <br />
+          {articles.map((article) => {
+            <h2>{article.title}</h2>;
+          })}
+          <ArticleList articles={articles} editBtn={editBtn} />
+          {editArticle ? (
+            <Form2
+              article={editArticle}
+              updatedInformation={updatedInformation}
+            />
+          ) : null}
 
-      {/* <Name /> 
+          {/* <Name /> 
       <Example names={["Python", "Java", "JavaScript", "C#"]} />
       <Example2 names={["React", "React Native", "Django"]} />
       <Form />  
@@ -71,6 +92,13 @@ function App() {
       </MyContext.Provider>
       <UseReducer />
       <DataFetching /> */}
+        </div>
+        <div className="col">
+          <button onClick={articleForm} className="btn btn-primary">
+            Insert Article
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

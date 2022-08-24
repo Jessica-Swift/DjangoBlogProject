@@ -1,8 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import APIService from "../APIService";
 
 function Form2(props) {
-  const [title, setTitle] = useState(props.article.title);
-  const [description, setDescription] = useState(props.article.description);
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+
+  useEffect(() => {
+    setTitle(props.article.title);
+    setDescription(props.article.description);
+  }, [props.article]);
+  const updateArticle = () => {
+    APIService.UpdateArticle().then((resp) => props.updatedInformation(resp));
+  };
   return (
     <div>
       {props.article ? (
@@ -26,9 +35,13 @@ function Form2(props) {
             className="form-control"
             id="description"
             rows={5}
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
           ></textarea>
           <br />
-          <button className="btn btn-success">Update Article</button>
+          <button onClick={updateArticle} className="btn btn-success">
+            Update Article
+          </button>
         </div>
       ) : null}
     </div>
