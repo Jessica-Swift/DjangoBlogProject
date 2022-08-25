@@ -18,19 +18,21 @@ import DataFetching from "./components/DataFetching";
 import { useState, useEffect } from "react";
 import ArticleList from "./components/ArticleList";
 import Form2 from "./components/Form2";
+import { useCookies } from "react-cookie";
 
 export const MyContext = React.createContext();
 
 function App() {
   const [articles, setArticles] = useState([]);
   const [editArticle, setEditArticle] = useState(null);
+  const [token] = useCookies(["mytoken"]);
 
   useEffect(() => {
     fetch("http://127.0.0.1:8000/api/articles/", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: "Token 612a75c0cd160e9cb19034b3dd63fe660f9ffc82",
+        Authorization: `Token ${token}`,
       },
     })
       .then((resp) => resp.json())
@@ -44,10 +46,7 @@ function App() {
 
   const updatedInformation = (article) => {
     const new_article = articles.map((myarticle) => {
-      if (myarticle.id === article.id) return article;
-      else {
-        return myarticle;
-      }
+      return myarticle.id === article.id ? article : myarticle;
     });
     setArticles(new_article);
   };
@@ -82,9 +81,9 @@ function App() {
           <h2>Django and ReactJS Course</h2>
           <br />
           <br />
-          {articles.map((article) => {
-            <h2>{article.title}</h2>;
-          })}
+          {/* {articles.map((article) => {
+            return <h2>{article.title}</h2>;
+          })} */}
           <ArticleList
             articles={articles}
             editBtn={editBtn}

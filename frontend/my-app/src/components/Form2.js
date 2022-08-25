@@ -1,21 +1,27 @@
 import React, { useEffect, useState } from "react";
 import APIService from "../APIService";
+import { useCookies } from "react-cookie";
 
 function Form2(props) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [token] = useCookies(["mytoken"]);
 
   useEffect(() => {
     setTitle(props.article.title);
     setDescription(props.article.description);
   }, [props.article]);
   const updateArticle = () => {
-    APIService.UpdateArticle().then((resp) => props.updatedInformation(resp));
+    APIService.UpdateArticle(
+      props.article.id,
+      { title, description },
+      token["mytoken"]
+    ).then((resp) => props.updatedInformation(resp));
   };
 
   const insertArticle = () => {
-    APIService.insertArticle({ title, description }).then((resp) =>
-      props.insertedInformation(resp)
+    APIService.insertArticle({ title, description }, token["mytoken"]).then(
+      (resp) => props.insertedInformation(resp)
     );
   };
 

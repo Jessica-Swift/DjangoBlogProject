@@ -15,11 +15,11 @@ function CounterHook() {
   };
 
   // useEffect(() => {
-  //   console.log("useEffec is called");
+  //   console.log("useEffect is called");
   // }, [count, text]);
 
   useEffect(() => {
-    console.log("useEffec is called");
+    console.log("useEffect is called");
     document.title = `You have clicked ${count} times`;
   });
 
